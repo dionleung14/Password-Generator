@@ -71,7 +71,8 @@ function generatePassword() {
     while (upperTrue === false && lowerTrue === false && specialTrue === false && numberTrue === false) {
       alert("Invalid selection. You must pick at least one characteristic.");
       charType();
-  
+    }
+
     // Populating the choice array based on user criteria
     if (upperTrue) {
       choiceArr.push(...upperArr);
