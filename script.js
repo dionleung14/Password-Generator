@@ -11,35 +11,40 @@ var specialArr = ["!", "#", "$", "%", "&", '"', "'", "(", ")", "*", "+", ",", "-
 // Array of numeric characters
 var numArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-// Empty array to be populated depending on user input
-var choiceArr = [];
-
-// Define password length variable based on user input
-var passLength = "";
-
-// Defining variables for password creation based on user input
-var upperTrue = true;
-var lowerTrue = true;
-var specialTrue = true;
-var numberTrue = true;
-
-// Defining function for random selection
-function randPass() {
-  Math.floor(Math.random()*(passLength+1));
+// Defining a function for random selection
+// Input requires an array
+// Function takes a random integer number between 0 and the length of the array, like an index,
+// and returns the element at the random position within the array inputted
+function randSel(randArr) {
+  x = Math.floor(Math.random()*(randArr.length));
+  return randArr[x];
 }
 
 
 // Define generatePassword function
+// This generatePassword function will output a password of user inputted length consisting of 
+// random characters of a subset that the user specifies 
 function generatePassword() {
-  passLength = prompt("How long do you want your password to be?");
+  // Define an empty array to be populated with characters depending on user input
+  var choiceArr = []; // Will be used later
+
+  // Prompting user to enter character length of password and storing it as passLength variable
+  var passLength = Number(prompt("How long do you want your password to be?"));
+    //Validity check for required length of password
     while (passLength < 8 || passLength > 128 ) {
       passLength = prompt("Invalid password length. Password must be at least 8 characters long and not exceed 128 characters.");
     }
-  console.log("Password will be " + passLength + " characters long");
-  upperTrue = confirm("Click 'OK' to include capital letters in your password. If you do not wish to include capital letters, click 'Cancel'");
-  lowerTrue = confirm("Click 'OK' to include lowercase letters in your password. If you do not wish to include lowercase letters, click 'Cancel'");
-  specialTrue = confirm("Click 'OK' to include special characters in your password. Special characters include the following: !" + '"#$%&' + "'()*+,-./:;<=>?@[" + "\\]^_`{|}~. If you do not wish to include special characters, click 'Cancel'");
-  numberTrue = confirm("Click 'OK' to include numbers in your password. If you do not wish to include numbers, click 'Cancel'");
+
+
+  //console.log("Password will be " + passLength + " characters long");
+
+  // User selection of password criteria
+  var upperTrue = confirm("Click 'OK' to include capital letters in your password. If you do not wish to include capital letters, click 'Cancel'");
+  var lowerTrue = confirm("Click 'OK' to include lowercase letters in your password. If you do not wish to include lowercase letters, click 'Cancel'");
+  var specialTrue = confirm("Click 'OK' to include special characters in your password. Special characters include the following: !" + '"#$%&' + "'()*+,-./:;<=>?@[" + "\\]^_`{|}~. If you do not wish to include special characters, click 'Cancel'");
+  var numberTrue = confirm("Click 'OK' to include numbers in your password. If you do not wish to include numbers, click 'Cancel'");
+
+    //Validity check for user input to make sure they selected at least one type of character
     while (upperTrue === false && lowerTrue === false && specialTrue === false && numberTrue === false) {
       alert("Invalid selection. You must pick at least one characteristic.");
       upperTrue = confirm("Click 'OK' to include capital letters in your password. If you do not wish to include capital letters, click 'Cancel'");
@@ -47,28 +52,55 @@ function generatePassword() {
       specialTrue = confirm("Click 'OK' to include special characters in your password. Special characters include the following: !" + '"#$%&' + "'()*+,-./:;<=>?@[" + "\\]^_`{|}~. If you do not wish to include special characters, click 'Cancel'");
       numberTrue = confirm("Click 'OK' to include numbers in your password. If you do not wish to include numbers, click 'Cancel'");
     }
-  console.log("Password will consist of characters");
-  console.log("Password is " + passLength);
+  
+    // Populating the choice array based on user criteria
+    if (upperTrue) {
+      choiceArr.push(...upperArr);
+    } 
 
-  // if (upperTrue) {
-  //   choiceArr = upperArr;
-  // }
+    if (lowerTrue) {
+      choiceArr.push(...lowerArr);
+    } 
 
+    if (specialTrue) {
+      choiceArr.push(...specialArr);
+    } 
+
+    if (numberTrue) {
+      choiceArr.push(...numArr);
+    } 
+
+    // console.log(choiceArr);
+
+  // Defining an empty password string that will be populated with random characters from choice array
+  var passString = "";
+
+  // Iterates the same amount of times as the desired password length
   for (i=0; i<passLength; i++) {
-    randPass();
+    // Calls the function for random selection and stores it in variable a
+    a = randSel(choiceArr);
+    // Concatenates the passString with the random selection
+    passString += a;
+    // console.log(i);
   }
+  
+  // Finally, returns passString as a useable item
+  return passString;
 }
 
-
-
 // Assignment Code
+// Assigns a variable to DOM of HTML element with id of generate for shorthand use
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  // Takes the function generatePassword and assigns it to local variable password
   var password = generatePassword();
+
+  // Assigns a variable to DOM of HTML element with id of password for shorthand use
   var passwordText = document.querySelector("#password");
 
+  // Assigns the value of local variable password to the HTML value 
   passwordText.value = password;
 
 }
