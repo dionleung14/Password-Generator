@@ -1,4 +1,4 @@
-//Listing password criteria
+// Listing password criteria
 // Array of uppercase letters
 var upperArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
@@ -41,8 +41,25 @@ function randSel(randArr) {
 function generatePassword() {
   // Define an empty array to be populated with characters depending on user input
   var choiceArr = []; // Will be used later
+  
+  // Define a variable for password length based on user input
+  var passLength = "";
 
   // Prompting user to enter character length of password and storing it as passLength variable
+// while (passLength = "") {
+//   passLength = prompt("How long do you want your password to be?");
+//   if (passLength < 8 || passLength > 128) {
+//     passLength = prompt("Invalid password length. Password must be at least 8 characters long and not exceed 128 characters.");
+//   }
+//   if (passLength % 1 !== 0) {
+//     passLength = prompt("Invalid password entry. Password must be an integer at least 8 characters long and not exceed 128 characters.");
+//   }
+
+//   if (typeof passLength !== 'number') {
+//       passLength = prompt("Please enter a number.");
+//   }
+// }
+
   var passLength = prompt("How long do you want your password to be?");
   // console.log(typeof passLength);
 
@@ -122,7 +139,6 @@ function writePassword() {
 
   // Assigns the value of local variable password to the HTML value 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
