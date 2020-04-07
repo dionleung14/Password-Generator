@@ -12,10 +12,12 @@
     <div class="wrapper">
       <header>
         <h1>Password Generator</h1>
+        <h3><a href="https://dionleung14.github.io/Portfolio/html/portfolio.html" target="_blank">Go back</a> to my portfolio!</h3>
       </header>
       <div class="card">
         <div class="card-header">
           <h2>Generate a Password</h2>
+          <h4>Use the checkboxes below to indicate what types of characters your password will include. </h4>
         </div>
         <div class="card-body">
           <textarea
@@ -25,7 +27,15 @@
             aria-label="Generated Password"
           ></textarea>
         </div>
-        <div class="card-footer">
+        <div class="card-footer flex">
+          <form action="placeholder">
+            <input type="text" name="charCount" id="character-count" placeholder="Enter a number between 8 and 128 for how many characters you want your password to be">
+            <br>
+            <input type="checkbox" name="upper" id="upper">Upper-case letters
+            <input type="checkbox" name="lower" id="lower">Lower-case letters
+            <input type="checkbox" name="number" id="number">Numbers
+            <input type="checkbox" name="special" id="special">Special characters
+          </form>
           <button type="button" id="generate" class="btn btn-outline-success">Generate Password</button>
         </div>
       </div>

@@ -1,29 +1,34 @@
 // Listing password criteria
 // Array of uppercase letters
-var upperArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const upperArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 // Array of lowercase letters
-var lowerArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const lowerArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 // Array of special characters
-var specialArr = ["!", "#", "$", "%", "&", '"', "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
+const specialArr = ["!", "#", "$", "%", "&", '"', "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
 
 // Array of numeric characters
-var numArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+const numArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
 // Defining boolean variables for user selection of character types
-var upperTrue = true;
-var lowerTrue = true;
-var specialTrue = true;
-var numberTrue = true;
+// let upperTrue = true;
+// let lowerTrue = true;
+// let specialTrue = true;
+// let numberTrue = true;
+
+  // let upperSel = document.getElementById("upper")
+  // let lowerSel = document.getElementById("lower")
+  // let numberSel = document.getElementById("number")
+  // let specialSel = document.getElementById("special")
 
 // Defining a function for user selection of character types
-function charType() {
-  upperTrue = confirm("Click 'OK' to include capital letters in your password. If you do not wish to include capital letters, click 'Cancel'");
-  lowerTrue = confirm("Click 'OK' to include lowercase letters in your password. If you do not wish to include lowercase letters, click 'Cancel'");
-  specialTrue = confirm("Click 'OK' to include special characters in your password. Special characters include the following: !" + '"#$%&' + "'()*+,-./:;<=>?@[" + "\\]^_`{|}~. If you do not wish to include special characters, click 'Cancel'");
-  numberTrue = confirm("Click 'OK' to include numbers in your password. If you do not wish to include numbers, click 'Cancel'");
-}
+// function charType() {
+//   upperTrue = confirm("Click 'OK' to include capital letters in your password. If you do not wish to include capital letters, click 'Cancel'");
+//   lowerTrue = confirm("Click 'OK' to include lowercase letters in your password. If you do not wish to include lowercase letters, click 'Cancel'");
+//   specialTrue = confirm("Click 'OK' to include special characters in your password. Special characters include the following: !" + '"#$%&' + "'()*+,-./:;<=>?@[" + "\\]^_`{|}~. If you do not wish to include special characters, click 'Cancel'");
+//   numberTrue = confirm("Click 'OK' to include numbers in your password. If you do not wish to include numbers, click 'Cancel'");
+// }
 
 // Defining a function for random selection
 // Input requires an array
@@ -39,6 +44,17 @@ function randSel(randArr) {
 // This generatePassword function will output a password of user inputted length consisting of 
 // random characters of a subset that the user specifies 
 function generatePassword() {
+  let upperSel = document.getElementById("upper")
+  let lowerSel = document.getElementById("lower")
+  let numberSel = document.getElementById("number")
+  let specialSel = document.getElementById("special")
+
+  // let upperTrue = true;
+  // let lowerTrue = true;
+  // let specialTrue = true;
+  // let numberTrue = true;
+
+
   // Define an empty array to be populated with characters depending on user input
   var choiceArr = []; // Will be used later
   
@@ -60,7 +76,7 @@ function generatePassword() {
 //   }
 // }
 
-  var passLength = prompt("How long do you want your password to be?");
+  // var passLength = prompt("How long do you want your password to be?");
   // console.log(typeof passLength);
 
     // // Validity check that user entered a number
@@ -82,28 +98,28 @@ function generatePassword() {
   //console.log("Password will be " + passLength + " characters long");
 
   // Calls charType function 
-  charType();
+  // charType();
 
     //Validity check for user input to make sure they selected at least one type of character
-    while (upperTrue === false && lowerTrue === false && specialTrue === false && numberTrue === false) {
-      alert("Invalid selection. You must pick at least one characteristic.");
-      charType();
-    }
+    // while (upperTrue === false && lowerTrue === false && specialTrue === false && numberTrue === false) {
+    //   alert("Invalid selection. You must pick at least one characteristic.");
+    //   charType();
+    // }
 
     // Populating the choice array based on user criteria
-    if (upperTrue) {
+    if (upperSel.checked) {
       choiceArr.push(...upperArr);
     } 
 
-    if (lowerTrue) {
+    if (lowerSel.checked) {
       choiceArr.push(...lowerArr);
     } 
 
-    if (specialTrue) {
+    if (specialSel.checked) {
       choiceArr.push(...specialArr);
     } 
 
-    if (numberTrue) {
+    if (numberSel.checked) {
       choiceArr.push(...numArr);
     } 
 
@@ -132,13 +148,17 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   // Takes the function generatePassword and assigns it to local variable password
-  var password = generatePassword();
+  // var password = generatePassword();
 
   // Assigns a variable to DOM of HTML element with id of password for shorthand use
-  var passwordText = document.querySelector("#password");
+  // var passwordText = document.querySelector("#password");
 
   // Assigns the value of local variable password to the HTML value 
-  passwordText.value = password;
+  // passwordText.value = password;
+  console.log(upperSel.checked)
+  console.log(lowerSel.checked)
+  console.log(numberSel)
+  console.log(specialSel)
 }
 
 // Add event listener to generate button
