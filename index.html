@@ -12,12 +12,12 @@
     <div class="wrapper">
       <header>
         <h1>Password Generator</h1>
-        <h3><a href="https://dionleung14.github.io/Portfolio/html/portfolio.html" target="_blank">Go back</a> to my portfolio!</h3>
+        <h3>Go back to my <a href="https://dionleung14.github.io/Portfolio/html/portfolio.html" target="_blank">portfolio!</a></h3>
       </header>
       <div class="card">
         <div class="card-header">
           <h2>Generate a Password</h2>
-          <h4>Use the checkboxes below to indicate what types of characters your password will include. </h4>
+          <h6>Enter your desired password length below, and use the checkboxes to indicate what types of characters your password will include.</h6>
         </div>
         <div class="card-body">
           <textarea
@@ -28,15 +28,18 @@
           ></textarea>
         </div>
         <div class="card-footer flex">
-          <form action="placeholder">
-            <input type="text" name="charCount" id="character-count" placeholder="Enter a number between 8 and 128 for how many characters you want your password to be">
+          <section>
+            <h6 class="mb-1">Enter a number between 8 and 128</h6>
+            <input class="mb-1" type="text" name="charCount" id="character-count" placeholder="Password length">
             <br>
-            <input type="checkbox" name="upper" id="upper">Upper-case letters
-            <input type="checkbox" name="lower" id="lower">Lower-case letters
-            <input type="checkbox" name="number" id="number">Numbers
-            <input type="checkbox" name="special" id="special">Special characters
-          </form>
-          <button type="button" id="generate" class="btn btn-outline-success">Generate Password</button>
+            <div class="mb-1">
+              <input title="Add uppercase letters to your password, e.g. A, B, C, D" type="checkbox" name="upper" id="upper">Upper-case letters
+              <input title="Add lowerase letters to your password, e.g. a, b, c, d" type="checkbox" name="lower" id="lower">Lower-case letters
+              <input title="Add numbers to your password, e.g. 0, 1, 4" type="checkbox" name="number" id="number">Numbers
+              <input title="Add special characters to your password, e.g. !, &, (, $" type="checkbox" name="special" id="special">Special characters
+            </div>
+            <button type="button" id="generate" class="btn btn-outline-success">Generate Password</button>
+          </section>
         </div>
       </div>
     </div>

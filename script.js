@@ -11,24 +11,23 @@ const specialArr = ["!", "#", "$", "%", "&", '"', "'", "(", ")", "*", "+", ",", 
 // Array of numeric characters
 const numArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-// Defining boolean variables for user selection of character types
-// let upperTrue = true;
-// let lowerTrue = true;
-// let specialTrue = true;
-// let numberTrue = true;
+let upperSel = document.getElementById("upper")
+let lowerSel = document.getElementById("lower")
+let numberSel = document.getElementById("number")
+let specialSel = document.getElementById("special")
 
-  // let upperSel = document.getElementById("upper")
-  // let lowerSel = document.getElementById("lower")
-  // let numberSel = document.getElementById("number")
-  // let specialSel = document.getElementById("special")
-
-// Defining a function for user selection of character types
-// function charType() {
-//   upperTrue = confirm("Click 'OK' to include capital letters in your password. If you do not wish to include capital letters, click 'Cancel'");
-//   lowerTrue = confirm("Click 'OK' to include lowercase letters in your password. If you do not wish to include lowercase letters, click 'Cancel'");
-//   specialTrue = confirm("Click 'OK' to include special characters in your password. Special characters include the following: !" + '"#$%&' + "'()*+,-./:;<=>?@[" + "\\]^_`{|}~. If you do not wish to include special characters, click 'Cancel'");
-//   numberTrue = confirm("Click 'OK' to include numbers in your password. If you do not wish to include numbers, click 'Cancel'");
-// }
+upperSel.addEventListener("mouseover", function(){
+  console.log("hovered")
+})
+lowerSel.addEventListener("mouseover", function(){
+  console.log("hovered")
+})
+numberSel.addEventListener("mouseover", function(){
+  console.log("hovered")
+})
+specialSel.addEventListener("mouseover", function(){
+  console.log("hovered")
+})
 
 // Defining a function for random selection
 // Input requires an array
@@ -39,78 +38,51 @@ function randSel(randArr) {
   return randArr[x];
 }
 
-
 // Define generatePassword function
 // This generatePassword function will output a password of user inputted length consisting of 
 // random characters of a subset that the user specifies 
 function generatePassword() {
-  let upperSel = document.getElementById("upper")
-  let lowerSel = document.getElementById("lower")
-  let numberSel = document.getElementById("number")
-  let specialSel = document.getElementById("special")
-
-  // let upperTrue = true;
-  // let lowerTrue = true;
-  // let specialTrue = true;
-  // let numberTrue = true;
-
-
   // Define an empty array to be populated with characters depending on user input
-  var choiceArr = []; // Will be used later
+  const choiceArr = [];
   
   // Define a variable for password length based on user input
-  var passLength = "";
+  let passLengthInput = document.getElementById("character-count")
+  let passLength = Number(passLengthInput.value)
+  
+  // Checks for illegal values of password length
+if (passLength == "") {
+  alert("Cannot leave password length blank. Please enter a number between 8 and 128.");
+  console.log("Error 1");
+} else if (passLength < 8) {
+  alert("Invalid password length. Password must be at least 8 characters long.");
+  console.log("Error 2a");
+} else if (passLength > 128) {
+  alert("Invalid password length. Password must not exceed 128 characters.");
+  console.log("Error 2b");
+} else if (passLength % 1 !== 0) {
+  alert("Invalid password entry. Password must be an integer.");
+  console.log("Error 3");
+} else if (typeof passLength !== 'number') {
+  alert("Please enter a number.");
+  console.log("Error 4");
+}
 
-  // Prompting user to enter character length of password and storing it as passLength variable
-// while (passLength = "") {
-//   passLength = prompt("How long do you want your password to be?");
-//   if (passLength < 8 || passLength > 128) {
-//     passLength = prompt("Invalid password length. Password must be at least 8 characters long and not exceed 128 characters.");
-//   }
-//   if (passLength % 1 !== 0) {
-//     passLength = prompt("Invalid password entry. Password must be an integer at least 8 characters long and not exceed 128 characters.");
-//   }
-
-//   if (typeof passLength !== 'number') {
-//       passLength = prompt("Please enter a number.");
-//   }
-// }
-
-  // var passLength = prompt("How long do you want your password to be?");
-  // console.log(typeof passLength);
-
-    // // Validity check that user entered a number
-    // while (typeof passLength !== 'number') {
-    //   passLength = prompt("Please enter a number.");
-    // }
-
-    // Validity check for required length of password
-    while (passLength < 8 || passLength > 128 ) {
-      passLength = prompt("Invalid password length. Password must be at least 8 characters long and not exceed 128 characters.");
-    }
-
-    // Validity check for integer value length of password
-    while (passLength % 1 !== 0) {
-      passLength = prompt("Invalid password entry. Password must be an integer at least 8 characters long and not exceed 128 characters.");
-    }
-
-
-  //console.log("Password will be " + passLength + " characters long");
-
-  // Calls charType function 
-  // charType();
-
+  // let upperSel = document.getElementById("upper")
+  // let lowerSel = document.getElementById("lower")
+  // let numberSel = document.getElementById("number")
+  // let specialSel = document.getElementById("special")
+  
     //Validity check for user input to make sure they selected at least one type of character
-    // while (upperTrue === false && lowerTrue === false && specialTrue === false && numberTrue === false) {
-    //   alert("Invalid selection. You must pick at least one characteristic.");
-    //   charType();
-    // }
-
+    if (upperSel.checked === false && lowerSel.checked === false && specialSel.checked === false && numberSel.checked === false) {
+        alert("Invalid selection. You must pick at least one characteristic.");
+        console.log("Error 5")
+    }
+    
     // Populating the choice array based on user criteria
     if (upperSel.checked) {
       choiceArr.push(...upperArr);
     } 
-
+    
     if (lowerSel.checked) {
       choiceArr.push(...lowerArr);
     } 
@@ -118,12 +90,10 @@ function generatePassword() {
     if (specialSel.checked) {
       choiceArr.push(...specialArr);
     } 
-
+    
     if (numberSel.checked) {
       choiceArr.push(...numArr);
     } 
-
-    // console.log(choiceArr);
 
   // Defining an empty password string that will be populated with random characters from choice array
   var passString = "";
@@ -143,23 +113,20 @@ function generatePassword() {
 
 // Assignment Code
 // Assigns a variable to DOM of HTML element with id of generate for shorthand use
-var generateBtn = document.querySelector("#generate");
+const generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
   // Takes the function generatePassword and assigns it to local variable password
-  // var password = generatePassword();
+  var password = generatePassword();
+  // generatePassword();
 
   // Assigns a variable to DOM of HTML element with id of password for shorthand use
-  // var passwordText = document.querySelector("#password");
+  var passwordText = document.querySelector("#password");
 
   // Assigns the value of local variable password to the HTML value 
-  // passwordText.value = password;
-  console.log(upperSel.checked)
-  console.log(lowerSel.checked)
-  console.log(numberSel)
-  console.log(specialSel)
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword)
